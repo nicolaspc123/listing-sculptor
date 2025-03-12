@@ -38,7 +38,7 @@ const ListingForm: React.FC<ListingFormProps> = ({ onChange, formData }) => {
         <div>
           <Label htmlFor="condition">Condition</Label>
           <Select 
-            value={formData.condition} 
+            value={formData.condition || ""} 
             onValueChange={(value) => onChange({ condition: value })}
           >
             <SelectTrigger id="condition" className="mt-1.5">
@@ -55,7 +55,7 @@ const ListingForm: React.FC<ListingFormProps> = ({ onChange, formData }) => {
         <div>
           <Label htmlFor="newWithTag">New With Tag</Label>
           <Select 
-            value={formData.newWithTag} 
+            value={formData.newWithTag || ""} 
             onValueChange={(value) => onChange({ newWithTag: value })}
           >
             <SelectTrigger id="newWithTag" className="mt-1.5">
