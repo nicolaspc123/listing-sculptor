@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				postco: {
+					DEFAULT: '#F6B12C',
+					foreground: '#1A1A1A',
+					light: '#FCE9C2',
+					muted: '#FEF7E5'
+				},
+				status: {
+					pending: '#F6B12C',
+					listed: '#22C55E',
+					confirmed: '#0284C7',
+					completed: '#0D9488',
+					expired: '#A1A1AA',
+					cancelled: '#EF4444',
+					rejected: '#F97316'
 				}
 			},
 			borderRadius: {
@@ -84,11 +100,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				fadeIn: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				slideIn: {
+					'0%': { transform: 'translateY(20px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				shimmer: {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				fadeIn: 'fadeIn 0.5s ease-out',
+				slideIn: 'slideIn 0.5s ease-out',
+				shimmer: 'shimmer 2s infinite linear'
 			}
 		}
 	},
