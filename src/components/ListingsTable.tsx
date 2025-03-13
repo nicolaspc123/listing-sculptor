@@ -31,24 +31,24 @@ const StatusBadge = ({ status }: { status: ListingStatus }) => {
   };
 
   const statusClasses: Record<ListingStatus, string> = {
-    pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    listed: 'bg-blue-100 text-blue-800 border-blue-200',
-    confirmed: 'bg-purple-100 text-purple-800 border-purple-200',
-    completed: 'bg-green-100 text-green-800 border-green-200',
-    expired: 'bg-gray-100 text-gray-800 border-gray-200',
-    cancelled: 'bg-red-100 text-red-800 border-red-200',
-    rejected: 'bg-red-100 text-red-800 border-red-200',
+    pending: 'bg-[#F2FCE2] text-[#403E43] border-[#F2FCE2]',
+    listed: 'bg-[#D3E4FD] text-[#403E43] border-[#D3E4FD]',
+    confirmed: 'bg-[#F1F0FB] text-[#403E43] border-[#F1F0FB]',
+    completed: 'bg-[#F2FCE2] text-[#403E43] border-[#F2FCE2]',
+    expired: 'bg-[#F6F6F7] text-[#8A898C] border-[#F6F6F7]',
+    cancelled: 'bg-[#F6F6F7] text-[#9F9EA1] border-[#F6F6F7]',
+    rejected: 'bg-[#F6F6F7] text-[#9F9EA1] border-[#F6F6F7]',
   };
 
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusClasses[status]}`}>
+    <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border ${statusClasses[status]}`}>
       {statusLabels[status]}
     </span>
   );
 };
 
 const SortableHeader = ({ label }: { label: string }) => (
-  <div className="flex items-center gap-1 cursor-pointer hover:text-primary transition-colors">
+  <div className="flex items-center gap-1 cursor-pointer hover:text-[#403E43] text-[#8E9196] transition-colors">
     {label}
     <ArrowUpDown size={14} />
   </div>
@@ -56,24 +56,24 @@ const SortableHeader = ({ label }: { label: string }) => (
 
 const ListingsTable: React.FC<ListingsTableProps> = ({ listings, onViewListing }) => {
   return (
-    <div className="bg-white rounded-lg border border-border overflow-hidden animate-fadeIn">
+    <div className="bg-white rounded-lg border border-[#C8C8C9]/30 overflow-hidden animate-fadeIn shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-border">
-              <th className="px-6 py-4 text-left text-sm font-medium text-foreground/70">
+            <tr className="border-b border-[#C8C8C9]/30 bg-[#F6F6F7]/50">
+              <th className="px-6 py-4 text-left text-sm font-medium text-[#8E9196]">
                 <SortableHeader label="Order Name" />
               </th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-foreground/70">
+              <th className="px-6 py-4 text-left text-sm font-medium text-[#8E9196]">
                 <SortableHeader label="Created At" />
               </th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-foreground/70">
+              <th className="px-6 py-4 text-left text-sm font-medium text-[#8E9196]">
                 Seller
               </th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-foreground/70">
+              <th className="px-6 py-4 text-left text-sm font-medium text-[#8E9196]">
                 Status
               </th>
-              <th className="px-6 py-4 text-right text-sm font-medium text-foreground/70">
+              <th className="px-6 py-4 text-right text-sm font-medium text-[#8E9196]">
                 Action
               </th>
             </tr>
@@ -82,18 +82,18 @@ const ListingsTable: React.FC<ListingsTableProps> = ({ listings, onViewListing }
             {listings.map((listing) => (
               <tr 
                 key={listing.id} 
-                className="border-b border-border hover:bg-muted/30 transition-colors"
+                className="border-b border-[#C8C8C9]/30 hover:bg-[#F6F6F7]/50 transition-colors"
               >
-                <td className="px-6 py-4 text-sm">{listing.orderName}</td>
-                <td className="px-6 py-4 text-sm text-foreground/80">{listing.createdAt}</td>
-                <td className="px-6 py-4 text-sm">{listing.seller}</td>
+                <td className="px-6 py-4 text-sm font-medium text-[#403E43]">{listing.orderName}</td>
+                <td className="px-6 py-4 text-sm text-[#8A898C]">{listing.createdAt}</td>
+                <td className="px-6 py-4 text-sm text-[#403E43]">{listing.seller}</td>
                 <td className="px-6 py-4">
                   <StatusBadge status={listing.status} />
                 </td>
                 <td className="px-6 py-4 text-right">
                   <Button 
                     variant="link" 
-                    className="text-primary font-medium" 
+                    className="text-[#403E43] font-medium hover:text-[#403E43]/80" 
                     onClick={() => onViewListing(listing.id)}
                   >
                     View
@@ -105,15 +105,23 @@ const ListingsTable: React.FC<ListingsTableProps> = ({ listings, onViewListing }
         </table>
       </div>
       
-      <div className="flex items-center justify-between px-6 py-4 border-t border-border">
-        <div className="text-sm text-foreground/70">
+      <div className="flex items-center justify-between px-6 py-4 border-t border-[#C8C8C9]/30 bg-[#F6F6F7]/30">
+        <div className="text-sm text-[#8E9196]">
           Page 1
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" className="h-8 w-8">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="h-8 w-8 border-[#C8C8C9] text-[#8E9196] hover:bg-[#F1F0FB] hover:text-[#403E43]"
+          >
             <ChevronLeft size={16} />
           </Button>
-          <Button variant="outline" size="icon" className="h-8 w-8">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="h-8 w-8 border-[#C8C8C9] text-[#8E9196] hover:bg-[#F1F0FB] hover:text-[#403E43]"
+          >
             <ChevronRight size={16} />
           </Button>
         </div>
